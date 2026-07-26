@@ -1,0 +1,75 @@
+{
+  "lut_size": 65536,
+  "domain": [
+    0.0,
+    1.0
+  ],
+  "linear_quantity": "Y=L/10000",
+  "design": "Forward LUT sampled from inverse of reverse LUT piecewise-linear interpolation",
+  "toe": {
+    "linear_end_Y": 1.5259021896696422e-05,
+    "linear_end_nits": 0.15259021896696423,
+    "pq_start": 7.309559025783966e-07,
+    "pq_end": 0.07428768111929397,
+    "slope_Y_per_PQ": 0.00020540649283803911
+  },
+  "validation": {
+    "new_pair_pq_roundtrip_max_abs_error": 3.6975259488924994e-06,
+    "new_pair_pq_roundtrip_error_at_PQ": 0.074284,
+    "original_pair_pq_roundtrip_max_abs_error": 0.02223209461165823,
+    "original_pair_pq_roundtrip_error_at_PQ": 0.04089417868314641,
+    "linear_roundtrip_max_abs_error_Y": 2.7814808234438715e-09,
+    "linear_roundtrip_max_abs_error_nits": 2.7814808234438715e-05,
+    "linear_roundtrip_error_at_Y": 0.9993438620584421,
+    "forward_max_deviation_from_standard_Y": 4.566616749612714e-06,
+    "forward_max_deviation_from_standard_nits": 0.04566616749612714,
+    "forward_max_deviation_at_PQ": 0.04090112575145807
+  },
+  "probes": [
+    {
+      "input_nits": 0.001,
+      "input_PQ": 0.006302377054571391,
+      "modified_forward_output_Y": 1.2943990242340726e-06,
+      "modified_forward_output_nits_equivalent": 0.012943990242340726,
+      "roundtrip_PQ": 0.006302377054571392,
+      "roundtrip_luminance_nits": 0.0010000000000000213,
+      "roundtrip_PQ_error": 8.673617379884035e-19
+    },
+    {
+      "input_nits": 0.01,
+      "input_PQ": 0.02148621379868528,
+      "modified_forward_output_Y": 4.413257677667858e-06,
+      "modified_forward_output_nits_equivalent": 0.044132576776678575,
+      "roundtrip_PQ": 0.021486213798685285,
+      "roundtrip_luminance_nits": 0.010000000000000061,
+      "roundtrip_PQ_error": 3.469446951953614e-18
+    },
+    {
+      "input_nits": 0.05,
+      "input_PQ": 0.04611139622863499,
+      "modified_forward_output_Y": 9.47143003610073e-06,
+      "modified_forward_output_nits_equivalent": 0.0947143003610073,
+      "roundtrip_PQ": 0.046111396228635,
+      "roundtrip_luminance_nits": 0.0500000000000016,
+      "roundtrip_PQ_error": 6.938893903907228e-18
+    },
+    {
+      "input_nits": 0.1,
+      "input_PQ": 0.06233686566269587,
+      "modified_forward_output_Y": 1.280424680720198e-05,
+      "modified_forward_output_nits_equivalent": 0.1280424680720198,
+      "roundtrip_PQ": 0.06233686566269589,
+      "roundtrip_luminance_nits": 0.09999999999999992,
+      "roundtrip_PQ_error": 2.0816681711721685e-17
+    },
+    {
+      "input_nits": 0.15259021896696423,
+      "input_PQ": 0.07428768111929397,
+      "modified_forward_output_Y": 1.5260704795890055e-05,
+      "modified_forward_output_nits_equivalent": 0.15260704795890057,
+      "roundtrip_PQ": 0.07429026093589716,
+      "roundtrip_luminance_nits": 0.15260322505648197,
+      "roundtrip_PQ_error": 2.579816603190399e-06
+    }
+  ]
+}

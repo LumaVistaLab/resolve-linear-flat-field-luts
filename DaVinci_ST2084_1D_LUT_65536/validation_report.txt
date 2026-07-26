@@ -1,0 +1,29 @@
+ST 2084 1D LUT validation report
+
+LUT size: 65536
+Domain: 0..1
+Linear representation: Y=L/10000
+Generation precision: IEEE-754 float64
+Serialization: 17 digits after decimal point
+Interpolation model: piecewise linear
+
+PQ -> Linear max absolute error:
+  Y:       2.76229783491288572e-09
+  cd/m^2:  2.76229783491288572e-05
+  at PQ:   9.99992370489051652e-01
+
+Linear -> PQ max absolute error:
+  PQ:      2.22215746249342615e-02
+  at Y:    3.99999999999999982e-06
+
+PQ -> Linear -> PQ max absolute error:
+  PQ:      2.22320945945464823e-02
+  at PQ:   4.08950000000000008e-02
+
+Linear -> PQ -> Linear max absolute error:
+  Y:       4.55375855899808448e-06
+  cd/m^2:  4.55375855899808474e-02
+  at Y:    7.99999999999999964e-06
+
+The finite LUT domain is explicitly 0..1. Host behavior outside the declared
+domain is not encoded by the LUT.

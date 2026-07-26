@@ -1,0 +1,22 @@
+{
+  "lut_size": 65536,
+  "domain": [
+    0.0,
+    1.0
+  ],
+  "linear_quantity": "Y=L/10000",
+  "table_generation": "IEEE-754 float64",
+  "serialization": "17 digits after decimal point",
+  "piecewise_linear_validation": {
+    "pq_to_linear_max_abs_error_Y": 2.7622978349128857e-09,
+    "pq_to_linear_max_abs_error_nits": 2.7622978349128857e-05,
+    "pq_to_linear_error_at_PQ": 0.9999923704890517,
+    "linear_to_pq_max_abs_error_PQ": 0.02222157462493426,
+    "linear_to_pq_error_at_Y": 4e-06,
+    "pq_roundtrip_max_abs_error_PQ": 0.022232094594546482,
+    "pq_roundtrip_error_at_PQ": 0.040895,
+    "linear_roundtrip_max_abs_error_Y": 4.5537585589980845e-06,
+    "linear_roundtrip_max_abs_error_nits": 0.04553758558998085,
+    "linear_roundtrip_error_at_Y": 8e-06
+  }
+}

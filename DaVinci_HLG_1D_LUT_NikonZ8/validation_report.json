@@ -1,0 +1,63 @@
+{
+  "revision": "Resolve LUT_1D_INPUT_RANGE input-domain fix",
+  "file_structure": {
+    "forward_LUT": {
+      "filename": "HLG_to_Linear_1D_65536_LinToe_NikonZ8.cube",
+      "LUT_1D_SIZE": 65536,
+      "LUT_1D_INPUT_RANGE": [
+        0.0,
+        1.0
+      ],
+      "contains_DOMAIN_MIN_or_DOMAIN_MAX": false
+    },
+    "reverse_LUT": {
+      "filename": "Linear_to_HLG_1D_65536_NikonZ8.cube",
+      "LUT_1D_SIZE": 65536,
+      "LUT_1D_INPUT_RANGE": [
+        0.0,
+        2.4017386520303
+      ],
+      "contains_DOMAIN_MIN_or_DOMAIN_MAX": false
+    }
+  },
+  "correct_input_range_roundtrip": {
+    "HLG_to_linear_to_HLG_max_abs_error": 1.1309335427034384e-06,
+    "HLG_to_linear_to_HLG_RMS_error": 3.378309764966769e-09,
+    "HLG_max_error_at_input_code": 0.031063999999999998,
+    "linear_to_HLG_to_linear_max_abs_error_E": 0.0001446569101903883,
+    "linear_to_HLG_to_linear_RMS_error_E": 2.9401769345444345e-06,
+    "linear_max_error_at_input_E": 2.3296516672589362
+  },
+  "legacy_default_0_to_1_regression": {
+    "purpose": "Reproduces the previously observed brightening when the reverse table is incorrectly indexed over 0..1.",
+    "HLG_roundtrip_max_abs_error": 0.20143776138186376,
+    "HLG_roundtrip_RMS_error": 0.13759376075883775
+  },
+  "curve_model_metrics_retained": {
+    "exact_theory_region": {
+      "stop_range": [
+        -7.0,
+        2.5
+      ],
+      "max_abs_model_difference": 0.0
+    },
+    "highlight_rolloff_fit": {
+      "stop_range": [
+        2.5,
+        5.75
+      ],
+      "RMSE_IRE": 0.00333835741958338,
+      "max_abs_residual_IRE": 0.03663062524237315
+    },
+    "bypass": {
+      "HLG_code_range": [
+        0.97,
+        1.0
+      ],
+      "linear_E_range": [
+        2.3296864924693907,
+        2.4017386520303
+      ]
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "standard": "ITU-R BT.2100-3 HLG OETF and inverse OETF only",
+  "lut_size": 65536,
+  "domain": [
+    0.0,
+    1.0
+  ],
+  "linear_quantity": "relative scene-linear E",
+  "constants": {
+    "a": 0.17883277,
+    "b": 0.28466892,
+    "c": 0.559910729529562
+  },
+  "design": "HLG_to_Linear is sampled from the exact inverse of the Linear_to_HLG LUT's piecewise-linear interpolation curve.",
+  "toe": {
+    "linear_start_E": 0.0,
+    "linear_end_E": 1.5259021896696422e-05,
+    "hlg_start_E_prime": 0.0,
+    "hlg_end_E_prime": 0.006765875086793227,
+    "slope_E_per_E_prime": 0.0022552916955977426
+  },
+  "validation": {
+    "lintoe_pair_hlg_roundtrip_max_abs_error": 2.8087143122178596e-06,
+    "lintoe_pair_hlg_roundtrip_error_at_E_prime": 0.006763067248632208,
+    "standard_sampled_pair_hlg_roundtrip_max_abs_error": 0.0016914656912208872,
+    "standard_sampled_pair_hlg_roundtrip_error_at_E_prime": 0.0033875028610666057,
+    "linear_roundtrip_max_abs_error_E": 2.6924940610406622e-08,
+    "linear_roundtrip_error_at_E": 1.0,
+    "forward_max_deviation_from_standard_inverse_OETF_E": 3.814755474174106e-06,
+    "forward_max_deviation_at_E_prime": 0.0033829375433966137
+  },
+  "probes": [
+    {
+      "input_linear_E": 1e-08,
+      "input_HLG_E_prime": 0.00017320508075688773,
+      "modified_forward_output_E": 3.9062798026634536e-07,
+      "roundtrip_HLG_E_prime": 0.00017320508075688776,
+      "roundtrip_linear_E_equivalent": 1.0000000000000004e-08,
+      "roundtrip_HLG_abs_error": 2.710505431213761e-20
+    },
+    {
+      "input_linear_E": 1e-07,
+      "input_HLG_E_prime": 0.0005477225575051661,
+      "modified_forward_output_E": 1.235274135432958e-06,
+      "roundtrip_HLG_E_prime": 0.000547722557505166,
+      "roundtrip_linear_E_equivalent": 9.999999999999996e-08,
+      "roundtrip_HLG_abs_error": 1.0842021724855044e-19
+    },
+    {
+      "input_linear_E": 1e-06,
+      "input_HLG_E_prime": 0.0017320508075688774,
+      "modified_forward_output_E": 3.9062798026634525e-06,
+      "roundtrip_HLG_E_prime": 0.0017320508075688772,
+      "roundtrip_linear_E_equivalent": 1e-06,
+      "roundtrip_HLG_abs_error": 2.168404344971009e-19
+    },
+    {
+      "input_linear_E": 5e-06,
+      "input_HLG_E_prime": 0.0038729833462074173,
+      "modified_forward_output_E": 8.734707177889945e-06,
+      "roundtrip_HLG_E_prime": 0.0038729833462074173,
+      "roundtrip_linear_E_equivalent": 5.000000000000001e-06,
+      "roundtrip_HLG_abs_error": 0.0
+    },
+    {
+      "input_linear_E": 1e-05,
+      "input_HLG_E_prime": 0.005477225575051661,
+      "modified_forward_output_E": 1.235274135432958e-05,
+      "roundtrip_HLG_E_prime": 0.00547722557505166,
+      "roundtrip_linear_E_equivalent": 9.999999999999997e-06,
+      "roundtrip_HLG_abs_error": 8.673617379884035e-19
+    },
+    {
+      "input_linear_E": 1.5259021896696422e-05,
+      "input_HLG_E_prime": 0.006765875086793227,
+      "modified_forward_output_E": 1.527071791857019e-05,
+      "roundtrip_HLG_E_prime": 0.006768023212862855,
+      "roundtrip_linear_E_equivalent": 1.5268712736616813e-05,
+      "roundtrip_HLG_abs_error": 2.1481260696273874e-06
+    },
+    {
+      "input_linear_E": 0.0001,
+      "input_HLG_E_prime": 0.017320508075688773,
+      "modified_forward_output_E": 0.00010014460795965463,
+      "roundtrip_HLG_E_prime": 0.017320508075688773,
+      "roundtrip_linear_E_equivalent": 0.0001,
+      "roundtrip_HLG_abs_error": 0.0
+    },
+    {
+      "input_linear_E": 0.001,
+      "input_HLG_E_prime": 0.05477225575051661,
+      "modified_forward_output_E": 0.0010000144850792131,
+      "roundtrip_HLG_E_prime": 0.05477225575051662,
+      "roundtrip_linear_E_equivalent": 0.0010000000000000002,
+      "roundtrip_HLG_abs_error": 6.938893903907228e-18
+    }
+  ]
+}

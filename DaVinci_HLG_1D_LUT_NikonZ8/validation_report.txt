@@ -1,0 +1,45 @@
+Nikon Z8 HLG 1D LUT validation report — Resolve input-range fix
+
+REVISION
+--------
+The LUT table values and Nikon Z8 curve model are retained.
+The .cube input-domain metadata is corrected to Resolve 1D form:
+
+Forward:
+  LUT_1D_INPUT_RANGE 0.00000000000000000 1.00000000000000000
+
+Reverse:
+  LUT_1D_INPUT_RANGE 0.00000000000000000 2.40173865203029990
+
+DOMAIN_MIN and DOMAIN_MAX are not present in either delivered LUT.
+
+ACTUAL-FILE ROUND-TRIP
+----------------------
+The following measurements parse the delivered .cube files and index each
+table using its declared LUT_1D_INPUT_RANGE.
+
+HLG -> Linear -> HLG:
+  max absolute error = 1.13093354270343838e-06
+  RMS error          = 3.37830976496676903e-09
+
+Linear -> HLG -> Linear:
+  max absolute error = 1.44656910190388288e-04
+  RMS error          = 2.94017693454443445e-06
+
+LEGACY FAILURE REGRESSION
+-------------------------
+If the reverse LUT is incorrectly indexed over 0..1 instead of
+0..2.40173865203029990, the HLG round-trip error becomes:
+
+  max absolute error = 2.01437761381863756e-01
+  RMS error          = 1.37593760758837752e-01
+
+This reproduces the overall brightening observed in the failed Resolve test.
+
+CURVE MODEL
+-----------
+The retained model is unchanged:
+- Shadow noise floor treated as a measurement limit.
+- Exact analytical HLG in the theory-aligned interval.
+- Smooth monotonic fit only in the Nikon Z8 highlight-rolloff interval.
+- Reversible HLG 0.97..1.00 bypass tail.

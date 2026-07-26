@@ -1,0 +1,54 @@
+HLG 1D LUT linear-toe validation report
+
+Standard: ITU-R BT.2100-3 HLG OETF and inverse OETF only
+LUT size: 65536
+Domain: 0..1
+Linear representation: relative scene-linear E
+
+CONSTANTS
+---------
+a = 0.17883277000000000
+b = 0.28466891999999999
+c = 0.55991072952956200
+
+LINEAR TOE
+-----------
+Linear-to-HLG LUT first input interval:
+  E:   0.00000000000000000e+00 .. 1.52590218966964218e-05
+  E':  0.00000000000000000e+00 .. 6.76587508679322731e-03
+
+The modified HLG-to-Linear LUT follows the inverse line:
+  E = (E' - E'0) * 2.25529169559774258e-03
+for E'0 < E' < E'1, subject to the forward LUT's own uniform-grid interpolation.
+
+PAIR ROUND-TRIP ERROR
+---------------------
+Analytical inverse-OETF sampled forward + standard reverse LUT:
+  max |E'_out-E'_in| = 1.69146569122088724e-03
+
+Linear-toe inverse-sampled forward + standard reverse LUT:
+  max |E'_out-E'_in| = 2.80871431221785955e-06
+
+Linear -> HLG -> Linear:
+  max |E_out-E_in|   = 2.69249406104066225e-08
+
+DEVIATION FROM STANDARD INVERSE OETF
+------------------------------------
+The forward LUT intentionally departs from the analytical HLG inverse OETF in
+the toe and is optimized for mutual inversion with the reverse LUT.
+
+Maximum |modified forward - standard inverse OETF|:
+  E:       3.81475547417410629e-06
+  at E':   3.38293754339661365e-03
+
+SELECTED PROBES
+---------------
+input_E            input_E_prime      modified_output_E   roundtrip_E         HLG_error
+1.000000000000e-08  1.732050807569e-04  3.906279802663e-07  1.000000000000e-08  2.711e-20
+1.000000000000e-07  5.477225575052e-04  1.235274135433e-06  1.000000000000e-07  1.084e-19
+1.000000000000e-06  1.732050807569e-03  3.906279802663e-06  1.000000000000e-06  2.168e-19
+5.000000000000e-06  3.872983346207e-03  8.734707177890e-06  5.000000000000e-06  0.000e+00
+1.000000000000e-05  5.477225575052e-03  1.235274135433e-05  1.000000000000e-05  8.674e-19
+1.525902189670e-05  6.765875086793e-03  1.527071791857e-05  1.526871273662e-05  2.148e-06
+1.000000000000e-04  1.732050807569e-02  1.001446079597e-04  1.000000000000e-04  0.000e+00
+1.000000000000e-03  5.477225575052e-02  1.000014485079e-03  1.000000000000e-03  6.939e-18
