@@ -37,31 +37,31 @@ Let:
 
 The model is:
 
-$$
+```math
 I_t(x) = S_t(x)\,T(x)
-$$
+```
 
 In unaffected regions, $T(x)$ is close to $1$. In a dust-attenuated region:
 
-$$
+```math
 0 < T(x) < 1
-$$
+```
 
 For a reference frame, let $I_r(x)$ be the original dusty image and let the image reconstructed with Local Replacement approximate $S_r(x)$. Build the flat in linear light:
 
-$$
+```math
 F(x) = \frac{I_r(x)}{S_r(x)} \approx T(x)
-$$
+```
 
 Then correct any frame with:
 
-$$
+```math
 \begin{aligned}
 \frac{I_t(x)}{F(x)}
 &\approx \frac{S_t(x)\,T(x)}{T(x)} \\
 &\approx S_t(x)
 \end{aligned}
-$$
+```
 
 ### What “fully adaptive” means
 
@@ -73,9 +73,9 @@ An alternative design that builds the flat in PQ code-value space and then adds 
 
 Dust attenuation is modeled as multiplication in linear light. For a nonlinear encoding function `g`, in general:
 
-$$
+```math
 \frac{g(S\,T)}{g(S)} \ne T
-$$
+```
 
 Dividing PQ or HLG code values therefore does not reliably isolate the dust transmission. Both the dusty reference and the reconstructed reference must first use the same forward LUT and the same linear definition. The resulting flat must remain in that linear representation until it is used as the divisor.
 
@@ -97,11 +97,7 @@ The instructions below describe the required signal path. DaVinci Resolve's laye
    - Nikon Z8 HLG → its paired Linear.
 6. Apply the same forward LUT to the untouched reference on the lower track, so both layers use exactly the same linear representation.
 7. On the Edit page, set the upper clip's composite mode to **Divide**.
-8. Verify with scopes, known pixels, or a controlled test that the actual operation is the original dusty linear reference divided by the reconstructed dust-free linear reference:
-
-   $$
-   \frac{I_r(x)}{S_r(x)}
-   $$
+8. Verify with scopes, known pixels, or a controlled test that the actual operation is the original dusty linear reference divided by the reconstructed dust-free linear reference, $\frac{I_r(x)}{S_r(x)}$.
 
    The expected flat is close to `1` in clean areas and typically below `1` in attenuated dust areas. If the reciprocal is produced, correct the layer/order setup before continuing.
 9. On the Color page, grab a still of the verified flat.
@@ -116,11 +112,7 @@ Do not apply the reverse LUT before exporting the flat.
 3. Put the linear flat-field TIFF on the upper track and extend it over the full required duration.
 4. On the Color page, apply the same package's forward LUT to the original material, converting it to linear light. The TIFF is already linear and must not receive this LUT again.
 5. On the Edit page, set the flat-field layer's composite mode to **Divide**.
-6. Verify that the effective calculation is the current dusty linear frame divided by the linear flat field:
-
-   $$
-   \frac{I_t(x)}{F(x)}
-   $$
+6. Verify that the effective calculation is the current dusty linear frame divided by the linear flat field, $\frac{I_t(x)}{F(x)}$.
 
 7. At the timeline output, apply the matching reverse LUT to return the composite result to PQ or HLG.
 8. Check final code values, black level, highlights, color, noise, and residual dust.
@@ -176,9 +168,9 @@ This improves `PQ → Linear → PQ` mutual inversion for the finite table. Insi
 
 `DaVinci_HLG_1D_LUT_LinToe` uses the ITU-R BT.2100-3 HLG reference OETF and its inverse only:
 
-$$
+```math
 E \longleftrightarrow E'
-$$
+```
 
 Both files use a `0..1` input domain. The reverse LUT is the standard OETF uniformly sampled over relative scene-linear `E`; the forward LUT is the inverse of that table's piecewise-linear interpolation. The documented toe corresponds to:
 
@@ -200,12 +192,12 @@ The repository's reproducible model contains four regions:
 
 The package defines:
 
-$$
+```math
 \begin{aligned}
 E &= E_0\,2^{\mathrm{stops}}, \\
 E_0 &= 0.04328874613391145
 \end{aligned}
-$$
+```
 
 Its delivered metadata is intentionally different from the other packages:
 
