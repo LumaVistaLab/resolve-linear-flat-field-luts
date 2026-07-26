@@ -21,7 +21,7 @@ The intended setup is an explicit node-based workflow in DaVinci Resolve with **
 Terminology used below:
 
 - **PQ/ST 2084 code value** is the nonlinear signal defined by the ST 2084 transfer function.
-- **HLG signal** is the nonlinear $E'$ signal associated with the documented HLG camera-side OETF model.
+- **HLG signal** is the nonlinear $`E'`$ signal associated with the documented HLG camera-side OETF model.
 - **Linear light** is proportional to optical or scene-light quantity. Its normalization differs by package and must not be mixed.
 - **Flat field** is a spatial map of the dust transmission, not a display-ready image.
 - **Local Replacement** means the DaVinci Resolve tool used to reconstruct the dust-free reference area.
@@ -31,9 +31,9 @@ Terminology used below:
 
 Let:
 
-- $S_t(x)$ be the ideal dust-free linear image at frame $t$;
-- $T(x)$ be the transmission of dust fixed on the sensor or optical path; and
-- $I_t(x)$ be the observed linear image.
+- $`S_t(x)`$ be the ideal dust-free linear image at frame $`t`$;
+- $`T(x)`$ be the transmission of dust fixed on the sensor or optical path; and
+- $`I_t(x)`$ be the observed linear image.
 
 The model is:
 
@@ -41,13 +41,13 @@ The model is:
 I_t(x) = S_t(x)\,T(x)
 ```
 
-In unaffected regions, $T(x)$ is close to $1$. In a dust-attenuated region:
+In unaffected regions, $`T(x)`$ is close to $`1`$. In a dust-attenuated region:
 
 ```math
 0 < T(x) < 1
 ```
 
-For a reference frame, let $I_r(x)$ be the original dusty image and let the image reconstructed with Local Replacement approximate $S_r(x)$. Build the flat in linear light:
+For a reference frame, let $`I_r(x)`$ be the original dusty image and let the image reconstructed with Local Replacement approximate $`S_r(x)`$. Build the flat in linear light:
 
 ```math
 F(x) = \frac{I_r(x)}{S_r(x)} \approx T(x)
@@ -97,7 +97,7 @@ The instructions below describe the required signal path. DaVinci Resolve's laye
    - Nikon Z8 HLG → its paired Linear.
 6. Apply the same forward LUT to the untouched reference on the lower track, so both layers use exactly the same linear representation.
 7. On the Edit page, set the upper clip's composite mode to **Divide**.
-8. Verify with scopes, known pixels, or a controlled test that the actual operation is the original dusty linear reference divided by the reconstructed dust-free linear reference, $\frac{I_r(x)}{S_r(x)}$.
+8. Verify with scopes, known pixels, or a controlled test that the actual operation is the original dusty linear reference divided by the reconstructed dust-free linear reference, $`\frac{I_r(x)}{S_r(x)}`$.
 
    The expected flat is close to `1` in clean areas and typically below `1` in attenuated dust areas. If the reciprocal is produced, correct the layer/order setup before continuing.
 9. On the Color page, grab a still of the verified flat.
@@ -112,7 +112,7 @@ Do not apply the reverse LUT before exporting the flat.
 3. Put the linear flat-field TIFF on the upper track and extend it over the full required duration.
 4. On the Color page, apply the same package's forward LUT to the original material, converting it to linear light. The TIFF is already linear and must not receive this LUT again.
 5. On the Edit page, set the flat-field layer's composite mode to **Divide**.
-6. Verify that the effective calculation is the current dusty linear frame divided by the linear flat field, $\frac{I_t(x)}{F(x)}$.
+6. Verify that the effective calculation is the current dusty linear frame divided by the linear flat field, $`\frac{I_t(x)}{F(x)}`$.
 
 7. At the timeline output, apply the matching reverse LUT to return the composite result to PQ or HLG.
 8. Check final code values, black level, highlights, color, noise, and residual dust.
@@ -132,10 +132,10 @@ All eight delivered `.cube` files declare and contain 65,536 entries. Every entr
 
 | Directory | Signal and linear definition | Delivered pair | Structure / dark strategy | Intended use and caution |
 | --- | --- | --- | --- | --- |
-| `DaVinci_ST2084_1D_LUT_65536` | PQ ↔ $Y=L/10{,}000$ | `ST2084_PQ_to_Linear_1D_65536.cube` + `Linear_to_ST2084_PQ_1D_65536.cube` | Uniform 65,536-point standard formula tables; input domain $[0,1]$ | Baseline choice when adherence to the sampled ST 2084 formula is preferred; finite-table interpolation causes a larger near-black round-trip deviation. |
-| `DaVinci_ST2084_1D_LUT_LinToe` | PQ ↔ $Y=L/10{,}000$ | `ST2084_PQ_to_Linear_1D_65536_LinToe.cube` + `Linear_to_ST2084_PQ_1D_65536.cube` | Matched linear toe in the forward LUT; input domain $[0,1]$ | Better pairwise round-trip consistency through a full PQ → Linear → PQ chain; the toe intentionally differs from the continuous ST 2084 EOTF. |
-| `DaVinci_HLG_1D_LUT_LinToe` | HLG $E'$ ↔ relative scene-linear $E$ | `HLG_to_Linear_1D_65536_LinToe.cube` + `Linear_to_HLG_1D_65536.cube` | BT.2100-3 reference OETF pair with a matched linear toe; input domain $[0,1]$ | General HLG source-side transfer workflow; not a display EOTF, OOTF, system-gamma transform, or HDR-to-SDR conversion. |
-| `DaVinci_HLG_1D_LUT_NikonZ8` | Nikon Z8 HLG model ↔ package-specific linear $E$ | `HLG_to_Linear_1D_65536_LinToe_NikonZ8.cube` + `Linear_to_HLG_1D_65536_NikonZ8.cube` | Measured-chart-derived highlight model, matched inverse, and Resolve-specific input-range metadata | Use only with Nikon Z8 HLG material matching the model; it is not interchangeable with the general HLG package. |
+| `DaVinci_ST2084_1D_LUT_65536` | PQ ↔ $`Y=L/10{,}000`$ | `ST2084_PQ_to_Linear_1D_65536.cube` + `Linear_to_ST2084_PQ_1D_65536.cube` | Uniform 65,536-point standard formula tables; input domain $`[0,1]`$ | Baseline choice when adherence to the sampled ST 2084 formula is preferred; finite-table interpolation causes a larger near-black round-trip deviation. |
+| `DaVinci_ST2084_1D_LUT_LinToe` | PQ ↔ $`Y=L/10{,}000`$ | `ST2084_PQ_to_Linear_1D_65536_LinToe.cube` + `Linear_to_ST2084_PQ_1D_65536.cube` | Matched linear toe in the forward LUT; input domain $`[0,1]`$ | Better pairwise round-trip consistency through a full PQ → Linear → PQ chain; the toe intentionally differs from the continuous ST 2084 EOTF. |
+| `DaVinci_HLG_1D_LUT_LinToe` | HLG $`E'`$ ↔ relative scene-linear $`E`$ | `HLG_to_Linear_1D_65536_LinToe.cube` + `Linear_to_HLG_1D_65536.cube` | BT.2100-3 reference OETF pair with a matched linear toe; input domain $`[0,1]`$ | General HLG source-side transfer workflow; not a display EOTF, OOTF, system-gamma transform, or HDR-to-SDR conversion. |
+| `DaVinci_HLG_1D_LUT_NikonZ8` | Nikon Z8 HLG model ↔ package-specific linear $`E`$ | `HLG_to_Linear_1D_65536_LinToe_NikonZ8.cube` + `Linear_to_HLG_1D_65536_NikonZ8.cube` | Measured-chart-derived highlight model, matched inverse, and Resolve-specific input-range metadata | Use only with Nikon Z8 HLG material matching the model; it is not interchangeable with the general HLG package. |
 
 ### 1. ST 2084 / PQ — 65,536-point baseline
 
@@ -143,9 +143,9 @@ All eight delivered `.cube` files declare and contain 65,536 entries. Every entr
 
 - LUT size: `65536`
 - Sampling: uniform over `0..1`
-- Linear quantity: $Y=L/10{,}000$
-- Forward range: PQ $N\in[0,1]$ → linear $Y\in[0,1]$
-- Reverse range: linear $Y\in[0,1]$ → PQ, with the formula's first table value approximately $7.3095590258\times10^{-7}$
+- Linear quantity: $`Y=L/10{,}000`$
+- Forward range: PQ $`N\in[0,1]`$ → linear $`Y\in[0,1]`$
+- Reverse range: linear $`Y\in[0,1]`$ → PQ, with the formula's first table value approximately $`7.3095590258\times10^{-7}`$
 - Metadata: `DOMAIN_MIN 0 0 0` and `DOMAIN_MAX 1 1 1`
 
 No additional extended range or clamping behavior is encoded. Host behavior outside the declared domain is not specified by the LUT.
@@ -158,9 +158,9 @@ The dense table reduces interpolation error over most of the range, but density 
 
 The repository records the matched toe as:
 
-- linear $Y$: $0\le Y\le1.5259021896696422\times10^{-5}$;
-- equivalent luminance: $0\le L\le0.15259021896696423\ \mathrm{cd/m^2}$; and
-- PQ $N$: approximately $7.3095590258\times10^{-7}\le N\le0.074287681119294$.
+- linear $`Y`$: $`0\le Y\le1.5259021896696422\times10^{-5}`$;
+- equivalent luminance: $`0\le L\le0.15259021896696423\ \mathrm{cd/m^2}`$; and
+- PQ $`N`$: approximately $`7.3095590258\times10^{-7}\le N\le0.074287681119294`$.
 
 This improves `PQ → Linear → PQ` mutual inversion for the finite table. Inside the toe, however, the forward result is intentionally not point-for-point equal to the ideal continuous ST 2084 EOTF. “LinToe” means near-black inverse-pair optimization; it is not a creative contrast curve or a film-style toe.
 
@@ -174,8 +174,8 @@ E \longleftrightarrow E'
 
 Both files use a `0..1` input domain. The reverse LUT is the standard OETF uniformly sampled over relative scene-linear `E`; the forward LUT is the inverse of that table's piecewise-linear interpolation. The documented toe corresponds to:
 
-- linear $E$: $0\le E\le1.5259021896696422\times10^{-5}$;
-- HLG $E'$: $0\le E'\le0.006765875086793227$.
+- linear $`E`$: $`0\le E\le1.5259021896696422\times10^{-5}`$;
+- HLG $`E'`$: $`0\le E'\le0.006765875086793227`$.
 
 This package deliberately excludes the display EOTF, OOTF, HLG system gamma, display peak-luminance scaling, black lift, gamut conversion, and tone mapping. It must not be described or used as a complete HLG display transform or HDR-to-SDR LUT.
 
@@ -201,8 +201,8 @@ E_0 &= 0.04328874613391145
 
 Its delivered metadata is intentionally different from the other packages:
 
-- `HLG_to_Linear_1D_65536_LinToe_NikonZ8.cube` uses `LUT_1D_INPUT_RANGE 0 1` and outputs linear $E$ up to $2.4017386520303$.
-- `Linear_to_HLG_1D_65536_NikonZ8.cube` uses `LUT_1D_INPUT_RANGE 0 2.4017386520303` and outputs HLG in $[0,1]$.
+- `HLG_to_Linear_1D_65536_LinToe_NikonZ8.cube` uses `LUT_1D_INPUT_RANGE 0 1` and outputs linear $`E`$ up to $`2.4017386520303`$.
+- `Linear_to_HLG_1D_65536_NikonZ8.cube` uses `LUT_1D_INPUT_RANGE 0 2.4017386520303` and outputs HLG in $`[0,1]`$.
 - Neither file contains `DOMAIN_MIN` or `DOMAIN_MAX`.
 
 This is the corrected Resolve input-range form. The repository records that the earlier domain-tag form caused visible round-trip brightening, while the corrected pair has been concatenated and tested in DaVinci Resolve with the observed material code values unchanged. This test does not establish compatibility with every Nikon Z8 firmware, every HLG recording mode, other Nikon cameras, or arbitrary standard-HLG media.
